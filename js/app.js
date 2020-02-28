@@ -6,8 +6,6 @@ let listStudents = [
 function makeTable() {
     html = "";
     for (let i = 0; i < listStudents.length; i++) {
-        // html += "<tr><td id='index'>" + (i + 1) + "</td><td>" + listStudents[i] +
-        //     "</td><td><button onclick=deleteStudent(" + i  + ")" + ">Delete</button></td></tr>";
         html += "<tr><td id='index'>" + (i + 1) + "</td><td>" + listStudents[i] +
             "</td><td><button style='margin-right: 3px' onclick=deleteStudent(" + i  + ")" + ">Delete</button>" +
             "<button style='margin-right: 3px' onclick=editStudent(" + i  + ")" + ">Edit</button>" +
@@ -15,18 +13,22 @@ function makeTable() {
     }
 }
 makeTable();
-
 function addStudent(x) {
     let newStudent = prompt("New Student's name:")
-    listStudents.splice(x, 0 , newStudent);
-    makeTable();
-    document.getElementById("mainBody").innerHTML = html;
+    if(newStudent != "" && newStudent != null) {
+        listStudents.splice(x+1, 0, newStudent);
+        makeTable();
+        document.getElementById("mainBody").innerHTML = html;
+    }
 }
 
 function editStudent(x) {
-    listStudents[x] = prompt("New name: ");
-    makeTable();
-    document.getElementById("mainBody").innerHTML = html;
+    let tem = prompt("Edit name ");
+    if(tem != null && tem != "") {
+        listStudents[x] = tem;
+        makeTable();
+        document.getElementById("mainBody").innerHTML = html;
+    }
 }
 
 
